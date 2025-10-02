@@ -1,16 +1,80 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8">
+  <title>Replit Asian Paints</title>
+  <style>
+    #grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
+    .grid-item {
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      background-color: transparent;
+    }
+
+    input {
+      margin: 5px;
+    }
+  </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <div id="grid-container">
+    <!-- Grid items 1 to 9 -->
+    <div class="grid-item" id="1">1</div>
+    <div class="grid-item" id="2">2</div>
+    <div class="grid-item" id="3">3</div>
+    <div class="grid-item" id="4">4</div>
+    <div class="grid-item" id="5">5</div>
+    <div class="grid-item" id="6">6</div>
+    <div class="grid-item" id="7">7</div>
+    <div class="grid-item" id="8">8</div>
+    <div class="grid-item" id="9">9</div>
+  </div>
+
+  <!-- Inputs and buttons -->
+  <input type="number" id="block_id" placeholder="Enter block id (1-9)" min="1" max="9">
+  <input type="text" id="colour_id" placeholder="Enter color (e.g., red)">
+  <button id="change_button">Change Color</button>
+  <button id="Reset">Reset</button>
+
+  <script>
+    const changeButton = document.getElementById("change_button");
+    const resetButton = document.getElementById("Reset");
+
+    const resetGridColors = () => {
+      for (let i = 1; i <= 9; i++) {
+        document.getElementById(i.toString()).style.backgroundColor = "transparent";
+      }
+    };
+
+    changeButton.addEventListener("click", () => {
+      const blockId = document.getElementById("block_id").value;
+      const color = document.getElementById("colour_id").value;
+
+      // Reset all blocks to transparent
+      resetGridColors();
+
+      // Change the selected block's background color if valid
+      if (blockId >= 1 && blockId <= 9) {
+        const block = document.getElementById(blockId);
+        block.style.backgroundColor = color;
+      } else {
+        alert("Please enter a valid block ID between 1 and 9.");
+      }
+    });
+
+    resetButton.addEventListener("click", resetGridColors);
+  </script>
 
 </body>
-
 </html>
